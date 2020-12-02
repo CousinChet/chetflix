@@ -1,2 +1,2 @@
 # chetflix
-computer hobbyist entertainment technology "CHET" video webserver for your archived DVD library
+computer hobbies entertainment technologist "CHET" video webserver for your archived DVD library
