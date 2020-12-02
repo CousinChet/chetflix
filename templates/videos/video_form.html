@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}· MeDiA aDD{% endblock %}
+
+{% block content %}
+
+
+<section id="video-form" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header">
+              <h4>
+                <i class="fas fa-sign-in-alt"></i> Title Search & Add</h4>
+            </div>            
+            <div class="card-body">
+              <form action="{% url 'video-create-form' %}"method="post" enctype="multipart/form-data" autocomplete="off">{% csrf_token %}                   
+                {{ form.as_ul }}
+                <div class="spin-spinner" id="spin1">
+                  <button type="submit" class="btn btn-success" onclick="$('#spin1').addClass('spinner');" value="Save">Submit</button>
+                </div>
+              </form>
+                <br><p>If Title Search pulls wrong info then after upload
+                <br>click update icon & try alternate title or add year to title.
+                <br>2GB max upload</p>
+            </div>            
+        </div>
+    </div>
+</div>
+   
+
+
+{% endblock %}
+
+

@@ -1,0 +1,85 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'videos' %}">
+        <img src="{% static 'img/logo.png' %}" class="logo" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <li
+            {% if '/' == request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+          </li>
+            {% if user.is_authenticated %}
+              <li
+              {% if 'videos' in request.path %}
+                class="nav-item active mr-3"
+              {% else %}
+                class="nav-item mr-3"
+              {% endif %}
+              >
+              <a class="nav-link" href="{% url 'newest' %}">MEDIA</a>
+              </li>                    
+              <li class="nav-item dropdown">            
+              <a class="nav-link dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-caret-down fa-lg"></i></a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'search' %}">JUST ADDED</a>
+                  <a class="dropdown-item" href="{% url 'title' %}">A-Z</a>
+                  <a class="dropdown-item" href="{% url 'videos' %}">RANDOM</a>
+                  <a class="dropdown-item" href="{% url 'rating' %}">RATING</a>
+                  <a class="dropdown-item" href="{% url 'oldest' %}">OLDEST</a>              
+                  <div class="dropdown-divider"></div>
+                {% if user.is_superuser %}            
+                  <a class="dropdown-item" href="{% url 'video-create-form' %}">Add</a>
+                {% endif %}            
+                </div>
+              </li>
+            {% endif %}
+        </ul>
+      </div>                
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+            <li class="nav-item mr-3">
+              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              <form action="{% url 'logout' %}" method="POST" id="logout">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>
+            </li>
+          {% else %}
+            <!-- <li
+            {% if 'register' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+            >
+              <a class="nav-link" href="{% url 'register' %}">
+                <i class="fas fa-user-plus"></i> Register</a>
+            </li> -->
+            <li
+            {% if 'login' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+            >
+              <a class="nav-link" href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt"></i>
+
+                Login</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

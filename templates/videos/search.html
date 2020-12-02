@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}· SeArCh{% endblock %}
+
+{% block content %}
+
+<!-- Search -->
+<div class="container text-center">
+  <div class="home-search p-3">
+    <div class="overlay p-3">
+      <div class="search">
+        <form class="d-flex row justify-content-center" action="{% url 'search' %}" autocomplete="off">
+          <div class="d-flex col-12">
+            <label class="sr-only">Search</label>
+            <input type="text" name="keywords" class="form-control flex" placeholder="Search">
+            <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+          </div>  
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Videos -->
+  <section id="videos" class="py-4">
+    <div class="container">
+      <div class="row">
+        {% if videos %}
+          {% for video in videos %}
+            <div class="col-md-3 col-lg-3 mb-4 flex">            
+              <div class="card video-preview">
+                <a href="{% url 'video' video.id %}">
+                  <img src="https://image.tmdb.org/t/p/w300/{{ video.cover }}">
+                </a>
+                <div class="card-body">         
+                  <div class="video-heading text-center">                  
+                    <a href="{% url 'video' video.id %}">
+                      <h5 class="text-light">{{ video.title }}</h5>  
+                    </a>                  
+                  </div>                
+                </div>
+              </div>
+            </div>   
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12 text-center">
+            <p>No Videos Available</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

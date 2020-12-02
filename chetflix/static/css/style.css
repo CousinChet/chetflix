@@ -1,0 +1,164 @@
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #c5c5c5;
+  text-align: left;
+  background-color: rgb(32, 32, 32); }
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: transparent;
+  background-clip: border-box;
+  border: 1px solid rgb(0 0 0 / 30%);
+  border-radius: 0.25rem; }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #aeafb1;
+  text-align: left;
+  list-style: none;
+  background-color: #404040;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem; }
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: rgb(219, 219, 219);
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: #0a0a0a00;
+  border: 0; }
+
+.dropdown-divider {
+  height: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #00000054; }
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #909090;
+  background-color: #272727;
+  border: 1px solid #404040; }
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #1b1b1b;
+  border-color: #00000054; }
+  
+.page-item.disabled .page-link {
+  z-index: 3;
+  color: #909090;
+  background-color: #272727;
+  border: 1px solid #404040; }
+
+.page-link:hover {
+  z-index: 2;
+  text-decoration: none;
+  color: #404040;
+  background-color: #272727;
+  border: 1px solid #6f6f6f; }
+
+img {
+  width: 100%; }
+
+.logo {
+  width: 80px; }
+
+.navbar {
+  opacity: 1;
+  text-transform: uppercase; 
+  background-color: black; }
+
+a {
+  color: rgb(195 197 192);
+  text-decoration-color: initial;
+  background-color: transparent; }
+
+a:hover {
+  color: rgb(36, 36, 36); }
+
+.form-control {
+  color: rgb(228, 228, 228);
+  background-color: rgb(57, 60, 62);
+  border-color: rgb(174, 117, 13); }
+
+.btn-success, .btn-secondary, .card-header {
+  color: rgb(228, 228, 228);
+  background-color: rgb(47, 159, 128);
+  border-color: rgb(44, 143, 116); }
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: transparent; 
+  border: 1px solid rgb(0 0 0 / 33%); }
+
+.social a {
+  margin-right: 0.4rem; }
+
+#work {
+  padding: 6rem 0; }
+
+.listing-preview a {
+  position: relative; }
+
+  /* spinner */
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #2b2b2b;
+  animation: spinner .6s linear infinite;
+}
+
+.spin-spinner {
+  position: relative;
+  min-height: 36px;
+  background: transparent;
+  margin: 10px 0 0;
+}

@@ -1,0 +1,22 @@
+
+#branding h1 {
+    color: orange;
+}
+
+a:link,
+a:visited {
+    color: darkorange;
+}
+
+#header {
+    background-image: initial;
+    background-color: grey;
+    color: rgb(255, 255, 168);
+}
+
+div.breadcrumbs {
+    background-image: initial;
+    background-color: orange;
+    border-color: initial;
+    color: rgb(177, 209, 225);
+}

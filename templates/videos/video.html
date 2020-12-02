@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}· {{ video.title }} {% endblock %}
+
+{% block content %}
+
+  <!-- Video -->
+<section id="video" class="py-4">
+  <div class="container">      
+      <div class="row">
+        <div class="col">
+          <h5>{{ video.rx_title }}</h5>
+        </div>
+        <div class="col"></div>
+        <div class="col text-right">
+          <a href="{% url 'videos' %}">Back To videos</a>
+        </div>
+      </div>
+      <div class="row my-custom-row justify-content-center">          
+        <div class="col-md col-sm-12">
+          <div class="embed-responsive embed-responsive-16by9">
+            <video class="embed-responsive-item" controls>
+              <source src="{{ video.media.url }}" type='video/mp4'>
+            </video>
+        </div>          
+          <h3>{{ video.rx_title }},    {{ video.year }}</h3>
+          <h5>Rating:  {{ video.rating }}</h5><br>          
+          <p>{{ video.plot }}</p>                    
+        </div>                  
+      </div>    
+    <div class="row my-custom-row justify-content-center">
+      <div class="col-md col-sm-12">
+        {% if user.is_superuser %}
+          <a href="{% url 'video-update-form' video.id %}"><i class="fas fa-edit"></i></a>         
+        {% endif %}
+      </div>
+    </div>            
+  </div>
+</section>
+
+{% endblock %}
+
