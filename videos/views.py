@@ -5,11 +5,13 @@ from django.views.generic.edit import CreateView, UpdateView
 from .models import Video
 import random
 
+# global num videos per page 
+vids_paged = 20
 
 @login_required(login_url='login')
 def index(request):    
     videos = Video.objects.order_by('?').filter(is_published=True)
-    paginator = Paginator(videos, 32)
+    paginator = Paginator(videos, vids_paged)
     page = request.GET.get('page')
     paged_videos = paginator.get_page(page)
 
@@ -22,7 +24,7 @@ def index(request):
 @login_required(login_url='login')
 def newest(request):
     videos = Video.objects.order_by('-year').filter(is_published=True)
-    paginator = Paginator(videos, 32)
+    paginator = Paginator(videos, vids_paged)
     page = request.GET.get('page')
     paged_videos = paginator.get_page(page)
 
@@ -36,7 +38,7 @@ def newest(request):
 @login_required(login_url='login')
 def oldest(request):
     videos = Video.objects.order_by('year').filter(is_published=True)
-    paginator = Paginator(videos, 32)
+    paginator = Paginator(videos, vids_paged)
     page = request.GET.get('page')
     paged_videos = paginator.get_page(page)
 
@@ -46,11 +48,23 @@ def oldest(request):
 
     return render(request, 'videos/videos.html', context)
     
+@login_required(login_url='login')
+def added(request):
+    videos = Video.objects.order_by('-list_date').filter(is_published=True)
+    paginator = Paginator(videos, vids_paged)
+    page = request.GET.get('page')
+    paged_videos = paginator.get_page(page)
+
+    context = {
+        'videos': paged_videos,
+    }
+
+    return render(request, 'videos/videos.html', context)
 
 @login_required(login_url='login')
 def rating(request):
     videos = Video.objects.order_by('-rating').filter(is_published=True)
-    paginator = Paginator(videos, 32)
+    paginator = Paginator(videos, vids_paged)
     page = request.GET.get('page')
     paged_videos = paginator.get_page(page)
 
@@ -64,7 +78,7 @@ def rating(request):
 @login_required(login_url='login')
 def title(request):
     videos = Video.objects.order_by('title').filter(is_published=True)
-    paginator = Paginator(videos, 32)
+    paginator = Paginator(videos, vids_paged)
     page = request.GET.get('page')
     paged_videos = paginator.get_page(page)
 

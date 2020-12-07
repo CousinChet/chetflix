@@ -9,6 +9,7 @@ urlpatterns = [
     path('rating', views.rating, name='rating'),
     path('oldest', views.oldest, name='oldest'),
     path('title', views.title, name='title'),
+    path('added', views.added, name='added'),
     path('<int:video_id>', views.video, name='video'),
     path('search', views.search, name='search'),
     path('add', views.AddMedia.as_view(), name='video-create-form'),

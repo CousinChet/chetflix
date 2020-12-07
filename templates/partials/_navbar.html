@@ -27,14 +27,14 @@
                 class="nav-item mr-3"
               {% endif %}
               >
-              <a class="nav-link" href="{% url 'newest' %}">MEDIA</a>
+              <a class="nav-link" href="{% url 'videos' %}">MEDIA</a>
               </li>                    
               <li class="nav-item dropdown">            
               <a class="nav-link dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-caret-down fa-lg"></i></a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'search' %}">JUST ADDED</a>
+                  <a class="dropdown-item" href="{% url 'added' %}">JUST ADDED</a>
+                  <a class="dropdown-item" href="{% url 'newest' %}">NEW RELEASE</a>
                   <a class="dropdown-item" href="{% url 'title' %}">A-Z</a>
-                  <a class="dropdown-item" href="{% url 'videos' %}">RANDOM</a>
                   <a class="dropdown-item" href="{% url 'rating' %}">RATING</a>
                   <a class="dropdown-item" href="{% url 'oldest' %}">OLDEST</a>              
                   <div class="dropdown-divider"></div>
@@ -82,4 +82,4 @@
         </ul>
       </div>
     </div>
-  </nav>
+</nav>
