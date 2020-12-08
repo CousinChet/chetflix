@@ -1,5 +1,5 @@
 # chetflix
-<a href="https://www.chetflix.ddns.net">Click here for demo</a>
+<a href="https://chetflix.ddns.net">Click here for demo</a>
 
 This fun project is a Computer Hobbies Entertainment Technologist "CHET" video webserver for your archived DVD library
 in a django, python, postgreSQL, and NGINX environment.  chetflix allows for ordering of large libraries with 
