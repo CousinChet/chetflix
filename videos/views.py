@@ -21,6 +21,7 @@ def index(request):
 
     return render(request, 'videos/videos.html', context)
 
+
 @login_required(login_url='login')
 def newest(request):
     videos = Video.objects.order_by('-year').filter(is_published=True)

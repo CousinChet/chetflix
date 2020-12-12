@@ -7,7 +7,7 @@ body {
   line-height: 1.5;
   color: #c5c5c5;
   text-align: left;
-  background-color: rgb(32, 32, 32); }
+  background-color: rgb(64, 64, 64); }
 
 .card {
   position: relative;
@@ -22,6 +22,13 @@ body {
   border: 1px solid transparent;
   border-radius: 0.25rem; 
 }
+
+img {
+  width: 100%;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0), 0px 0px 50px rgba(0, 0, 0, 0.3); }
+
+.card:hover {
+  transform: scale(1.05); }
 
 .dropdown-menu {
   position: absolute;
@@ -89,11 +96,9 @@ body {
   background-color: #272727;
   border: 1px solid #6f6f6f; }
 
-img {
-  width: 100%; }
-
 .logo {
-  width: 80px; }
+  width: 80px; 
+  box-shadow: none; }
 
 .navbar {
   opacity: 1;
