@@ -2,41 +2,54 @@
 
 {% block title %}· {{ video.title }} {% endblock %}
 
+{% load humanize %}
+
 {% block content %}
 
-  <!-- Video -->
+<!-- video presentation -->
+
+
 <section id="video" class="py-4">
-  <div class="container">      
-      <div class="row">
-        <div class="col">
-          <h5>{{ video.rx_title }}</h5>
-        </div>
-        <div class="col"></div>
-        <div class="col text-right">
-          <a href="{% url 'videos' %}">Back To videos</a>
-        </div>
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5>{{ video.rx_title }}</h5>
+      </div>      
+    </div>
+    <div class="ratio ratio-16x9">
+      {% if not user.see_r and video.mpaa_rating == 4 %}
+        <p>File Not Found</p>
+      {% else %}
+      <video src="{{ video.media.url }}" title="{{ video.rx_title }}" controls controlsList="nodownload"></video>
+      {% endif %}
+    </div>
+      <div>
+        <h3>{{ video.rx_title }}, {{ video.year }}</h3>
+          <h5>Rating:  {{ video.rating }},
+            <button type="button" class="btn btn-outline-info" value="{{ video.genre1 }}"><a href="/videos/search?keywords='{{ video.genre1 }}" role='button'>{{ video.genre1 }}</a></button>
+            <button type="button" class="btn btn-outline-info" value="{{ video.genre2 }}"><a href="/videos/search?keywords='{{ video.genre2 }}" role='button'>{{ video.genre2 }}</a></button>
+            <button type="button" class="btn btn-outline-info" value="{{ video.genre3 }}"><a href="/videos/search?keywords='{{ video.genre3 }}" role='button'>{{ video.genre3 }}</a></button>
+            </h5><br>
+          <p>{{ video.plot }}</p>
+          {% if not video.budget == 0 %}
+          <p>Budget: ${{ video.budget|intcomma }}</p>
+          {% endif %}
+          <h5>Actors:
+            <button type="button" class="btn btn-outline-info" value="{{ video.actor1 }}"><a href="/videos/search?keywords='{{ video.actor1 }}" role='button'>{{ video.actor1 }}</a></button>
+            <button type="button" class="btn btn-outline-info" value="{{ video.actor2 }}"><a href="/videos/search?keywords='{{ video.actor2 }}" role='button'>{{ video.actor2 }}</a></button>
+            <button type="button" class="btn btn-outline-info" value="{{ video.actor3 }}"><a href="/videos/search?keywords='{{ video.actor3 }}" role='button'>{{ video.actor3 }}</a></button>
+            <button type="button" class="btn btn-outline-info" value="{{ video.actor4 }}"><a href="/videos/search?keywords='{{ video.actor4 }}" role='button'>{{ video.actor4 }}</a></button>
+            <button type="button" class="btn btn-outline-info" value="{{ video.actor5 }}"><a href="/videos/search?keywords='{{ video.actor5 }}" role='button'>{{ video.actor5 }}</a></button>
+            <button type="button" class="btn btn-outline-info" value="{{ video.actor6 }}"><a href="/videos/search?keywords='{{ video.actor6 }}" role='button'>{{ video.actor6 }}</a></button>
+          </h5>
       </div>
-      <div class="row my-custom-row justify-content-center">          
-        <div class="col-md col-sm-12">
-          <div class="embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" controls>
-              <source src="{{ video.media.url }}" type='video/mp4'>
-            </video>
-        </div>          
-          <h3>{{ video.rx_title }},    {{ video.year }}</h3>
-          <h5>Rating:  {{ video.rating }}</h5><br>          
-          <p>{{ video.plot }}</p>                    
-        </div>                  
-      </div>    
-    <div class="row my-custom-row justify-content-center">
-      <div class="col-md col-sm-12">
+      <div>
         {% if user.is_superuser %}
-          <a href="{% url 'video-update-form' video.id %}"><i class="fas fa-edit"></i></a>         
+          <a href="{% url 'video-update-form' video.id %}" text-end><i class="fas fa-edit"></i></a>
         {% endif %}
       </div>
-    </div>            
   </div>
+  
 </section>
 
 {% endblock %}
-

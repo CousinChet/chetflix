@@ -33,13 +33,15 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'videos.apps.VideosConfig',
-    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
+    'django.contrib.humanize',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +87,9 @@ DATABASES = {
     }
 }
 
+# Added Custom User model
+
+AUTH_USER_MODEL = 'account.Account'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

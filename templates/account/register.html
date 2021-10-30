@@ -2,20 +2,23 @@
 
 {% block title %}· ReGiStEr{% endblock %}
 
+<!-- enable registraion by removing account views decorator and uncommenting nav bar link -->
+
 {% block content %}
   <section id="register" class="bg-light py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <div class="card">
-            <div class="card-header">
+          <div class="form-group">
+            <div class="form">
               <h4>
                 <i class="fas fa-user-plus"></i> Register</h4>
             </div>
             <div class="card-body">
+                <!-- Alerts added -->
               {% include 'partials/_alerts.html' %}
               <form action="{% url 'register' %}" method="POST">
-                {% csrf_token %}                
+                {% csrf_token %}
                 <div class="form-group">
                   <label for="username">Username</label>
                   <input type="text" name="username" class="form-control" required>

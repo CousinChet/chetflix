@@ -4,6 +4,8 @@
 
 {% block content %}
 
+<!-- Update form to fix wrong movie field population -->
+
 <section id="video-form" class="bg-black py-5">
     <div class="container">
       <div class="row">
@@ -12,16 +14,20 @@
             <div class="form">
               <h4>
                 <i class="fas fa-sign-in-alt"></i> Media Update</h4>
-            </div>            
-            <div class="card-body" >                           
-                <form action="{% url 'video-update-form' video.id %}" method="post" autocomplete="off">{% csrf_token %}                   
-                    {{ form.as_p }}                              
-                    <button type="submit" class="btn btn-success" value='Update'>Submit</button> 
+            </div>
+            <div class="card-body" >
+                <form action="{% url 'video-update-form' video.id %}" method="post" autocomplete="off">{% csrf_token %}
+                    {{ form.as_p }}
+                    <p></p>
+                    <p>Ratings: G = 1, PG = 2, PG-13 = 3, Rated R = 4</p>
+                    <p>When updating by "Title id" clear data from "Title:" before submit</p>
+                    <p>Same is true for updating by "Title:" clear "Title id:"</p>
+                    <button type="submit" class="btn btn-success" value='Update'>Submit</button>
                 </form>
-                <br><a href="https://www.themoviedb.org/">Test your Search at TMDB & try alt-title</a>                             
+                <br><a href="https://www.themoviedb.org/">Search at TMDB and retrieve movie ID from URL</a>
             </div>
         </div>
     </div>
 </div>
- 
+
 {% endblock %}

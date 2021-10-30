@@ -1,8 +1,11 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+<!-- nav bar menu navigation with search, user preferences, login/out
+      uncomment register section to allow public registration -->
+
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top p-0">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'videos' %}">
+      <a class="navbar-brand" href="{% url 'index' %}">
         <img src="{% static 'img/logo.png' %}" class="logo" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
@@ -10,15 +13,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
             {% if user.is_authenticated %}
               <li
               {% if 'videos' in request.path %}
@@ -27,34 +21,64 @@
                 class="nav-item mr-3"
               {% endif %}
               >
-              <a class="nav-link" href="{% url 'videos' %}">MEDIA</a>
-              </li>                    
-              <li class="nav-item dropdown">            
-              <a class="nav-link dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-caret-down fa-lg"></i></a>
+              </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MOVIES <i class="fas fa-bars"></i></a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'added' %}">JUST ADDED</a>
-                  <a class="dropdown-item" href="{% url 'newest' %}">NEW RELEASE</a>
+                  <a class="dropdown-item" href="{% url 'newest' %}">NEWEST</a>
+                  <!-- <a class="dropdown-item" href="{% url 'popularity' %}">POPULAR</a> -->
                   <a class="dropdown-item" href="{% url 'title' %}">A-Z</a>
                   <a class="dropdown-item" href="{% url 'rating' %}">RATING</a>
-                  <a class="dropdown-item" href="{% url 'oldest' %}">OLDEST</a>              
+                  <a class="dropdown-item" href="{% url 'oldest' %}">OLDEST</a>
                   <div class="dropdown-divider"></div>
-                {% if user.is_superuser %}            
+                {% if user.is_superuser %}
                   <a class="dropdown-item" href="{% url 'video-create-form' %}">Add</a>
-                {% endif %}            
+                {% endif %}
                 </div>
               </li>
             {% endif %}
         </ul>
-      </div>                
+      </div>
+      <!-- Search -->
+        <div class="home-search">
+          <div class="overlay p-3">
+            <div class="search">
+              <form class="d-flex row justify-content-center" action="{% url 'search' %}" autocomplete="off">
+                <div class="d-flex col-12">
+                  <label class="sr-only">Search</label>
+                  <input type="text" name="keywords" class="form-control flex" placeholder="Search">
+                  <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
+          <li
+            {% if 'user_update' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+            >
+            {% if request.user.r_edit == True %}
+              <a class="nav-link" href="{% url 'user_update' %}">
+                <i class="fas fa-user-cog" style='font-size:20px'>
+            {% else %}
+              <a class="nav-link" href="{% url 'pg13_update' %}">
+                <i class="fas fa-user-cog" style='font-size:20px'>
+            {% endif %}
+              </i></a>
+          </li>
+          <li class="nav-item mr-3">
+            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <form action="{% url 'logout' %}" method="POST" id="logout">
+              {% csrf_token %}
+              <input type="hidden">
+            </form>
+          </li>
           {% else %}
             <!-- <li
             {% if 'register' in request.path %}

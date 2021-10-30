@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% load static %}
@@ -5,11 +6,149 @@
 {% block content %}
 
 {% block title %}{% endblock %}
+
+<!-- index displays genre menu for authenticated or login for not authenticated -->
+
+{% if user.is_authenticated %}
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<div class="container text-center">
-  <div class="overlay p-5">
-    <h1 class="d-flex display-3 mb-1 row justify-content-center">ChetFlix</h1>
+<div class="container">
+  <div class="row row-cols-3 g-1">
+    <div class="col">
+      <div class="m-3">
+      </div>
+    </div>
+    <div class="col">
+      <div class="m-3">
+        <a href="/videos"><img class='tiles' src="{% static 'img/chetflix-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="m-3">
+      </div>
+    </div>
   </div>
 </div>
+<div class="container">
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2 g-lg-3">
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='action"><img class='tiles' src="{% static 'img/action-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='adventure"><img class='tiles' src="{% static 'img/adventure-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='animation"><img class='tiles' src="{% static 'img/animated-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='comedy"><img class='tiles' src="{% static 'img/comedy-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='crime"><img class='tiles' src="{% static 'img/crime-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='science fiction"><img class='tiles' src="{% static 'img/scifi-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='drama"><img class='tiles' src="{% static 'img/drama-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='family"><img class='tiles' src="{% static 'img/family-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='fantasy"><img class='tiles' src="{% static 'img/fantasy-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='history"><img class='tiles' src="{% static 'img/history-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='mystery"><img class='tiles' src="{% static 'img/mystery-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-1 border bg-light">
+        <a href="/videos/search?keywords='romance"><img class='tiles' src="{% static 'img/romance-tile.png' %}" class="img-thumbnail"></a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% if not user.is_authenticated %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="form-group">
+
+          <div class="form">
+            <a href="{% url 'videos' %}"><h1 class="d-flex display-3 mb-1 row justify-content-center">ChetFlix</h1></a>
+          </div>
+          <div class="card-body">
+            <form action="{% url 'login' %}" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="password2">Password</label>
+                <input type="password" name="password" class="form-control" required>
+              </div>
+
+              <input type="submit" value="Login" class="btn btn-secondary btn-block">
+            </form>
+          </div>
+
+          <div class="container text-center">
+              <div class="home-search p-5">
+                  <div class="overlay p-5">
+
+                        <ul class="list-group">
+                          <li class="list-group-item">Environment:</li>
+                          <li class="list-group-item"><a href="https://www.djangoproject.com/"><img src="{% static 'img/django.png' %}" class="logo" alt=""></a></li>
+                          <li class="list-group-item"><a href="https://www.python.org/"><img src="{% static 'img/python.png' %}" class="logo" alt=""></a></li>
+                          <li class="list-group-item"><a href="https://www.postgresql.org/"><img src="{% static 'img/postgresql.png' %}" class="logo" alt=""></a></li>
+                          <li class="list-group-item"><a href="https://www.nginx.com/"><img src="{% static 'img/nginx.png' %}" class="logo" alt=""></a></li>
+                          <li class="list-group-item"><a href="https://gunicorn.org/"><img src="{% static 'img/gunicorn.png' %}" class="logo" alt=""></a></li>
+                          <li class="list-group-item"><a href="https://github.com/CousinChet/chetflix">
+                            <button type="button" class="btn btn-outline-success">chetflix github</button></a></li>
+                          <li class="list-group-item"><a href="https://en.wikipedia.org/wiki/List_of_films_in_the_public_domain_in_the_United_States">
+                              <button type="button" class="btn btn-outline-secondary">Public Domain Movie Info</button></a></li>
+                        </ul>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<div class="container">
+  <div class="text-center text-dark m-5">
+    <h6>CHETFLIX DVD-Library</h6>
+  </div>
+</div>
+
 
 {% endblock %}

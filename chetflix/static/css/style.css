@@ -20,15 +20,7 @@ body {
   background-color: transparent;
   background-clip: border-box;
   border: 1px solid transparent;
-  border-radius: 0.25rem; 
-}
-
-img {
-  width: 100%;
-  box-shadow: 0px 15px 20px rgba(0, 0, 0), 0px 0px 50px rgba(0, 0, 0, 0.3); }
-
-.card:hover {
-  transform: scale(1.05); }
+  border-radius: 0.25rem; }
 
 .dropdown-menu {
   position: absolute;
@@ -82,7 +74,7 @@ img {
   color: #fff;
   background-color: #1b1b1b;
   border-color: #00000054; }
-  
+
 .page-item.disabled .page-link {
   z-index: 3;
   color: #909090;
@@ -96,13 +88,23 @@ img {
   background-color: #272727;
   border: 1px solid #6f6f6f; }
 
+img {
+  width: 100%;
+  box-shadow: 0px 15px 15px rgba(0, 0, 0), 0px 0px 80px rgba(0, 0, 0, 0.6); }
+
+img:hover {
+  transform: scale(1.1); }
+
+.card:hover {
+  transform: scale(1.025); }
+
 .logo {
-  width: 80px; 
+  width: 80px;
   box-shadow: none; }
 
 .navbar {
   opacity: 1;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   background-color: black; }
 
 a {
@@ -128,7 +130,7 @@ a:hover {
   display: block;
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
-  background-color: transparent; 
+  background-color: transparent;
   border: 1px solid rgb(0 0 0 / 33%); }
 
 .social a {
@@ -140,12 +142,21 @@ a:hover {
 .listing-preview a {
   position: relative; }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: grey;
+  color: white;
+  text-align: center; }
+
   /* spinner */
 
 @keyframes spinner {
   to {transform: rotate(360deg);}
 }
- 
+
 .spinner:before {
   content: '';
   box-sizing: border-box;
@@ -167,4 +178,17 @@ a:hover {
   min-height: 36px;
   background: transparent;
   margin: 10px 0 0;
+}
+
+button[value=""],
+button[value="0"]{
+  display: none;
+}
+
+img.tiles {
+  filter: brightness(110%);
+}
+
+img.tiles:hover {
+  filter: brightness(145%);
 }
